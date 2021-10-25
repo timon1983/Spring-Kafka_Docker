@@ -1,25 +1,24 @@
 package com.example.springkafka.service;
 
-import org.slf4j.LoggerFactory;
+import com.example.springkafka.dao.TopicRepositoryL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import java.util.logging.Logger;
 
 @Service
 public class ProducerClass {
 
-    private static final String TOPIC = "user";
-
     private final KafkaTemplate kafkaTemplate;
+    private TopicRepositoryL topicRepositoryL;
 
     @Autowired
-    public ProducerClass(KafkaTemplate kafkaTemplate) {
+    public ProducerClass(KafkaTemplate kafkaTemplate, TopicRepositoryL topicRepositoryL) {
         this.kafkaTemplate = kafkaTemplate;
+        this.topicRepositoryL = topicRepositoryL;
     }
 
-    public void sendMessage(String message){
-        System.out.println("Producer send message " + message);
-        this.kafkaTemplate.send(TOPIC,message);
+    public void sendMessage(String message) {
+        String TOPIC = topicRepositoryL.findAll().get(0).getSendTopic();
+        this.kafkaTemplate.send(TOPIC, message);
     }
 }

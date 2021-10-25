@@ -16,12 +16,11 @@ public class KafkaController {
     @Autowired
     public KafkaController(ProducerClass producer) {
         this.producer = producer;
-        // todo ne meth
     }
 
     @PostMapping("publish")
     public String sendMessage(@RequestParam String message){
         this.producer.sendMessage(message);
-        return "Published successfully"; // todo
+        return "Published successfully";
     }
 }

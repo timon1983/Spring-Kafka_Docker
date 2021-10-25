@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.kafka.datasource.driver-class-name",
+      "type": "java.lang.String",
+      "description": "Description for spring.kafka.datasource.driver-class-name."
+  }
+] }
